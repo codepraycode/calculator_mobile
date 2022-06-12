@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import styles from './assets/styles';
 
 
-const Button = ()=>{
+const Button = ({text, btnStyle})=>{
   return (
-    <View style={screen_styles.button}>
-      <Text>1</Text>
+    <View style={[screen_styles.button,btnStyle||{}]}>
+      <Text>{text}</Text>
     </View>
   )
 }
@@ -28,30 +28,97 @@ export default function App() {
 
       <View style={screen_styles.controls}>
         <View style={screen_styles.buttons}>
-          <Button/>
-          <Button/>
-          <Button/>
-          <Button/>
+          {[7,8,9,'DEL'].map((each,i)=>{
+
+            return <Button 
+                      text={each} 
+                      key={i} 
+                      btnStyle={
+                        i==3 ? 
+                          {
+                            backgroundColor:styles.darkCyan,
+                          }
+                        :
+                        null
+                      } />
+          })}
         </View>
 
         <View style={screen_styles.buttons}>
-          <Button/>
-          <Button/>
-          <Button/>
-          <Button/>
+          {[4,5,6,'+'].map((each,i)=>{
+
+            return <Button 
+                      text={each} 
+                      key={i} 
+                      btnStyle={
+                        i==3 ? 
+                          {
+                            backgroundColor:styles.darkCyan,
+                          }
+                        :
+                        null
+                      } />
+          })}
         </View>
 
         <View style={screen_styles.buttons}>
-          <Button/>
-          <Button/>
-          <Button/>
-          <Button/>
+          {[1,2,3,'-'].map((each,i)=>{
+
+            return <Button 
+                      text={each} 
+                      key={i} 
+                      btnStyle={
+                        i==3 ? 
+                          {
+                            backgroundColor:styles.darkCyan,
+                          }
+                        :
+                        null
+                      } />
+          })}
         </View>
 
 
-        <View style={[screen_styles.buttons, screen_styles.last]}>
-          <Button/>
-          <Button/>
+        <View style={screen_styles.buttons}>
+          {['.',0,'/','x'].map((each,i)=>{
+
+            return <Button 
+                      text={each} 
+                      key={i} 
+                      btnStyle={
+                        i==3 ? 
+                          {
+                            backgroundColor:styles.darkCyan,
+                          }
+                        :
+                        null
+                      } />
+          })}
+        </View>
+
+
+        <View style={[screen_styles.buttons, screen_styles.paddingBottom]}>
+
+          <Button 
+            text={"RESET"} 
+            
+            btnStyle={
+              {
+                backgroundColor:styles.darkCyan,
+              }
+            } 
+          />
+
+
+          <Button 
+            text={"="} 
+            
+            btnStyle={
+              {
+                backgroundColor:styles.orange,
+              }
+            } 
+          />
           
         </View>
 
@@ -76,7 +143,8 @@ const screen_styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-    width:'80%'
+    width:'90%',
+    marginBottom:20
   },
   toogle:{
     width:30,
@@ -84,17 +152,20 @@ const screen_styles = StyleSheet.create({
     backgroundColor:styles.grayishRed,
   },
   screen:{
-    width:'80%',
+    width:'90%',
     height:100,
     backgroundColor:styles.veryLightGrey,
+    marginBottom:20,
+    borderRadius:10
   },
   controls:{
     backgroundColor:styles.grayishRed,
-    // paddingVertical:20,
-    width:'80%',
-    // flexDirection:'row'
+    width:'90%',
+    borderRadius:10,
+    paddingHorizontal:10,
+    
   },
-  last:{
+  paddingBottom:{
     paddingBottom:20,
   },
   buttons:{
@@ -106,13 +177,15 @@ const screen_styles = StyleSheet.create({
   },
   
   button:{
-    width:50,
+    // width:70,
     height:50,
     backgroundColor:styles.grayishYellow,
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'center',
-    marginHorizontal:10,
+    marginHorizontal:5,
     flex:1,
+    borderRadius:8,
+    elevation:4,
   }
 });
