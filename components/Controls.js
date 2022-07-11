@@ -66,7 +66,9 @@ const Controls = ({ theme, screenValue,updateScreen, clearScreen }) => {
         // value = value.replace(`/${'−'}/g`, `-`); //.replaceAll('−', '-');
 
         // console.log(value);
-        let calculate = eval(value.join(''));
+        let calculate = eval(value.join('')).toFixed(5);
+
+
         return calculate;
     }
 
@@ -99,7 +101,7 @@ const Controls = ({ theme, screenValue,updateScreen, clearScreen }) => {
         }
         
         if (val === 'DEL') {
-            updateScreen(screenValue.substr(0,screenValue.length-1))
+            updateScreen(String(screenValue).substr(0,screenValue.length-1))
             return
         }
 
