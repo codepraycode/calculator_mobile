@@ -6,7 +6,7 @@ import { Icon } from "@rneui/themed";
 import colors from '../assets/styles';
 
 
-const Header = ({theme}) => {
+const Header = ({ theme, toggleTheme }) => {
   // const colorScheme = useColorScheme();
 
   // console.log(colorScheme)
@@ -32,7 +32,11 @@ const Header = ({theme}) => {
         name= {theme === 'light' ? 'moon-o' : 'sun-o'}
         type='font-awesome'
         color='#f50'
-        onPress={() => console.log('hello')} />
+        onPress={() => {
+          // console.log('hello')
+          toggleTheme()
+        }
+        } />
     </View>
   )
 }

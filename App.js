@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import { useFonts } from 'expo-font';
+import {useState} from 'react';
 
 // Components
 import Header from './components/Header';
@@ -17,23 +18,42 @@ export default function App() {
     Spartan:require('./assets/fonts/LeagueSpartan-VariableFont_wght.ttf'),
   });
 
-  const colorScheme = useColorScheme();
+  const phoneColorScheme = useColorScheme();
+
+
+  const [appTheme, setAppTheme] = useState(phoneColorScheme)
+
+
+  const toggleTheme = () => {
+
+    setAppTheme((prev) => {
+      if (prev === 'light') {
+        return 'dark'
+      }
+
+      return 'light'
+    })
+
+  }
 
   if (!loaded){
     return null;
   }
 
 
-  const themeStyle = colorScheme === 'light' ? screen_styles.lightMode : screen_styles.darkMode
+  
+
+
+  const themeStyle = appTheme === 'light' ? screen_styles.lightMode : screen_styles.darkMode
 
   return (
     <View style={[screen_styles.container, themeStyle]}>
       
-      <Header theme={colorScheme}/>
+      <Header theme={appTheme} toggleTheme={toggleTheme}/>
 
-      <Display theme={colorScheme} />
+      <Display theme={appTheme} />
 
-      <Controls theme={colorScheme} />
+      <Controls theme={appTheme} />
 
       <StatusBar style="auto"/>
     </View>
