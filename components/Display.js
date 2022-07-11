@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
         
     },
     text:{
+        fontFamily:'Spartan',
+        fontWeight:"bold",
         fontSize:50,
         marginBottom: 20,
         marginRight: 20

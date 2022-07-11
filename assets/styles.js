@@ -15,5 +15,5 @@ export default {
 
     // Text
     veryDarkGrayishYellow: "hsl(60, 10%, 19%)",
-    white: "hsl(0, 0, 100%)",
+    white: "#ffffff",
 }

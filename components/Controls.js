@@ -10,8 +10,9 @@ const Button = ({ text, special, style }) => {
             <Text 
                 style={{
                     color:special ? colors.white:null,
-                    fontSize:18,
-                    fontWeight:'bold'
+                    fontSize:20,
+                    fontWeight:'bold',
+                    fontFamily: 'Spartan',
                 }}
 
             >
