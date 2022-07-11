@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react';
 
 // Styles
 import colors from '../assets/styles';
 
-const Button = ({ text, special, style, theme }) => {
+const Button = ({ text, special, style, theme, pressAction }) => {
     const specialStyle = theme === 'light' ? styles.specialLight : styles.specialDark;
 
     // const specialTextStyle = theme === 'light' ? styles.textLight : styles.textDark;
@@ -20,17 +20,19 @@ const Button = ({ text, special, style, theme }) => {
     // special ? colors.white
     
     return (
-        <View 
+        <TouchableOpacity
+            onPress={()=>pressAction(text)}
             style={
                 [
-                    styles.button, 
+                    styles.button,
                     themeStyle,
                     special ? specialStyle : null,
-                    style||null,
-                    
+                    style || null,
+
                 ]
             }
         >
+            
             <Text 
                 style={{
                     color: textColor,
@@ -42,12 +44,69 @@ const Button = ({ text, special, style, theme }) => {
             >
                     {text}
             </Text>
-        </View>
+                
+            
+        </TouchableOpacity>
     )
 }
 
 
-const Controls = ({theme}) => {
+const Controls = ({ theme, screenValue,updateScreen, clearScreen }) => {
+
+
+
+    const calculate = ()=>{
+        // console.log(typeof screenValue)
+        let value = screenValue.toLowerCase().split('').map(e=>{
+            if (e === 'x') return '*'
+            if (e === '−') return '-'
+
+            return e
+        }) //.replace(`/${`['x']`}/g`, `*`);
+        // value = value.replace(`/${'−'}/g`, `-`); //.replaceAll('−', '-');
+
+        // console.log(value);
+        let calculate = eval(value.join(''));
+        return calculate;
+    }
+
+    const handlePress = (val)=>{
+        // console.log()
+
+        let isAction = ['=', 'RESET', 'DEL'].includes(val);
+
+        if (!isAction) {
+            if (typeof screenValue === 'number') {
+                // clearScreen(val)
+                screenValue = String(screenValue);
+            }
+            updateScreen(screenValue + val)
+            return
+
+        }
+
+
+        if (val === 'RESET') {
+            // actions.is__clear();
+            clearScreen()
+            return
+        }
+
+        if (val === '=') {
+            let cal = calculate();
+            clearScreen(cal)
+            return
+        }
+        
+        if (val === 'DEL') {
+            updateScreen(screenValue.substr(0,screenValue.length-1))
+            return
+        }
+
+        
+
+    }
+
     return (
         <View style={[styles.wrapper, theme === 'light' ? styles.wrapperLight : styles.wrapperDark]}>
             
@@ -56,9 +115,11 @@ const Controls = ({theme}) => {
 
                     return <Button
                         text={each}
+                        pressAction={handlePress}
                         theme={theme}
                         key={i}
                         special={i == 3}
+
                         />
                 })}
             </View>
@@ -68,6 +129,7 @@ const Controls = ({theme}) => {
 
                     return <Button
                         text={each}
+                        pressAction={handlePress}
                         theme={theme}
                         key={i}
                         />
@@ -79,6 +141,7 @@ const Controls = ({theme}) => {
 
                     return <Button
                         text={each}
+                        pressAction={handlePress}
                         theme={theme}
                         key={i}
                         // special={i==3}
@@ -92,6 +155,7 @@ const Controls = ({theme}) => {
 
                     return <Button
                         text={each}
+                        pressAction={handlePress}
                         theme={theme}
                         key={i}
                         // special={i == 3} 
@@ -104,6 +168,7 @@ const Controls = ({theme}) => {
 
                 <Button
                     text={"RESET"}
+                    pressAction={handlePress}
                     theme={theme}
 
                     special={true}
@@ -112,6 +177,7 @@ const Controls = ({theme}) => {
 
                 <Button
                     text={"="}
+                    pressAction={handlePress}
                     theme={theme}
                     special={true}
                     style={

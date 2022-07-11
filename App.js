@@ -21,8 +21,23 @@ export default function App() {
   const phoneColorScheme = useColorScheme();
 
 
-  const [appTheme, setAppTheme] = useState(phoneColorScheme)
+  const [appTheme, setAppTheme] = useState(phoneColorScheme);
 
+
+  const [screenValue, setScreenValue] = useState('');
+  
+
+  const updateScreen = (val)=>{
+    setScreenValue(()=>{
+      return val
+    })
+  }
+
+  const clearScreen = (val='') => {
+    setScreenValue(() => {
+      return val
+    })
+  }
 
   const toggleTheme = () => {
 
@@ -51,9 +66,9 @@ export default function App() {
       
       <Header theme={appTheme} toggleTheme={toggleTheme}/>
 
-      <Display theme={appTheme} />
+      <Display theme={appTheme} screenValue={screenValue}/>
 
-      <Controls theme={appTheme} />
+      <Controls theme={appTheme} screenValue={screenValue} updateScreen={updateScreen} clearScreen={clearScreen}/>
 
       <StatusBar style="auto"/>
     </View>

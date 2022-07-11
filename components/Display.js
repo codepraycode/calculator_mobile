@@ -4,7 +4,7 @@ import React from 'react';
 // Styles
 import colors from '../assets/styles';
 
-const Display = ({theme}) => {
+const Display = ({ theme, screenValue }) => {
     
     return (
         <View style={styles.wrapper}>
@@ -13,7 +13,7 @@ const Display = ({theme}) => {
                 <Text 
                     style={[styles.text, theme === 'light' ? styles.textLightMode : styles.textDarkMode]}
                 >
-                    0
+                    {screenValue.length === 0 ? '0' : screenValue}
                 </Text>
             </View>
 
