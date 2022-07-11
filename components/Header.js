@@ -1,13 +1,34 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react';
+import { Icon } from "@rneui/themed";
 
 // Styles
 import colors from '../assets/styles';
 
+
 const Header = () => {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.toogle}/>
+      {/* <View style={styles.toogle}/> */}
+      {/* <Icon
+        color="#0CC"
+        containerStyle={{}}
+        // disabledStyle={{}}
+        // iconProps={{}}
+        iconStyle={{}}
+        name="devices"
+        onLongPress={() => console.log("onLongPress()")}
+        onPress={() => console.log("onPress()")}
+        size={40}
+        type="material"
+      />       */}
+
+      <Icon
+        raised
+        name='sun-o' // moon-o
+        type='font-awesome'
+        color='#f50'
+        onPress={() => console.log('hello')} />
     </View>
   )
 }
