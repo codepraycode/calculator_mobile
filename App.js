@@ -5,14 +5,9 @@ import styles from './assets/styles';
 // Components
 import Header from './components/Header';
 import Display from './components/Display';
+import Controls from './components/Controls';
 
-const Button = ({text, btnStyle})=>{
-  return (
-    <View style={[screen_styles.button,btnStyle||{}]}>
-      <Text>{text}</Text>
-    </View>
-  )
-}
+
 
 export default function App() {
   return (
@@ -22,107 +17,7 @@ export default function App() {
 
       <Display/>
 
-      
-
-      <View style={screen_styles.controls}>
-        <View style={screen_styles.buttons}>
-          {[7,8,9,'DEL'].map((each,i)=>{
-
-            return <Button 
-                      text={each} 
-                      key={i} 
-                      btnStyle={
-                        i==3 ? 
-                          {
-                            backgroundColor:styles.darkCyan,
-                          }
-                        :
-                        null
-                      } />
-          })}
-        </View>
-
-        <View style={screen_styles.buttons}>
-          {[4,5,6,'+'].map((each,i)=>{
-
-            return <Button 
-                      text={each} 
-                      key={i} 
-                      btnStyle={
-                        i==3 ? 
-                          {
-                            backgroundColor:styles.darkCyan,
-                          }
-                        :
-                        null
-                      } />
-          })}
-        </View>
-
-        <View style={screen_styles.buttons}>
-          {[1,2,3,'-'].map((each,i)=>{
-
-            return <Button 
-                      text={each} 
-                      key={i} 
-                      btnStyle={
-                        i==3 ? 
-                          {
-                            backgroundColor:styles.darkCyan,
-                          }
-                        :
-                        null
-                      } />
-          })}
-        </View>
-
-
-        <View style={screen_styles.buttons}>
-          {['.',0,'/','x'].map((each,i)=>{
-
-            return <Button 
-                      text={each} 
-                      key={i} 
-                      btnStyle={
-                        i==3 ? 
-                          {
-                            backgroundColor:styles.darkCyan,
-                          }
-                        :
-                        null
-                      } />
-          })}
-        </View>
-
-
-        <View style={[screen_styles.buttons, screen_styles.paddingBottom]}>
-
-          <Button 
-            text={"RESET"} 
-            
-            btnStyle={
-              {
-                backgroundColor:styles.darkCyan,
-              }
-            } 
-          />
-
-
-          <Button 
-            text={"="} 
-            
-            btnStyle={
-              {
-                backgroundColor:styles.orange,
-              }
-            } 
-          />
-          
-        </View>
-
-
-        
-      </View>
+      <Controls/>
 
       <StatusBar style="auto"/>
     </View>
