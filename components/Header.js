@@ -6,7 +6,11 @@ import { Icon } from "@rneui/themed";
 import colors from '../assets/styles';
 
 
-const Header = () => {
+const Header = ({theme}) => {
+  // const colorScheme = useColorScheme();
+
+  // console.log(colorScheme)
+
   return (
     <View style={styles.wrapper}>
       {/* <View style={styles.toogle}/> */}
@@ -25,7 +29,7 @@ const Header = () => {
 
       <Icon
         raised
-        name='sun-o' // moon-o
+        name= {theme === 'light' ? 'moon-o' : 'sun-o'}
         type='font-awesome'
         color='#f50'
         onPress={() => console.log('hello')} />
@@ -42,10 +46,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     // backgroundColor:'red',
     width: '95%',
-    
     paddingRight:20,
     flex: 0.7,
-    
   },
 
   toogle: {

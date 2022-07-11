@@ -4,12 +4,25 @@ import React from 'react';
 // Styles
 import colors from '../assets/styles';
 
-const Display = () => {
+const Display = ({theme}) => {
+    
+    
+    const themeStyle = theme === 'light' ? 
+        styles.lightMode 
+        : 
+        styles.darkMode
+    
     return (
         <View style={styles.wrapper}>
-            <View style={styles.screen}>
-                <Text style={styles.text}>0</Text>
+            
+            <View style={[styles.screen, theme === 'light' ? styles.screenLightMode : styles.screenDarkMode]}>
+                <Text 
+                    style={[styles.text, theme === 'light' ? styles.textLightMode : styles.textDarkMode]}
+                >
+                    0
+                </Text>
             </View>
+
         </View>
     )
 }
@@ -27,7 +40,7 @@ const styles = StyleSheet.create({
     screen:{
         height:'90%',
         width:'95%',
-        backgroundColor: colors.veryLightGrey,
+        
         borderRadius: 10,
         alignItems:'flex-end',
         justifyContent:'flex-end',
@@ -39,5 +52,22 @@ const styles = StyleSheet.create({
         fontSize:50,
         marginBottom: 20,
         marginRight: 20
-    }
+    },
+
+
+    // Themes
+    screenLightMode:{
+        backgroundColor: colors.veryLightGrey,
+    },
+    screenDarkMode:{
+        backgroundColor: colors.darkBlue3,
+    },
+
+
+    textLightMode: {
+        color:colors.dark,
+    },
+    textDarkMode: {
+        color: colors.white,
+    },
 })

@@ -1,9 +1,14 @@
 export default {
-    //  Background
+    //  Background light
     lightGray: "hsl(0, 0%, 90%)",
     grayishRed: "hsl(0, 5%, 81%)",
     veryLightGrey: "hsl(0, 0%, 93%)",
 
+
+    //  Background dark
+    darkBlue1: "hsl(222, 26%, 31%)",
+    darkBlue2:"hsl(223, 31%, 20%)",
+    darkBlue3: "hsl(224, 36%, 15%)",
 
     // Keys
     darkCyan: "hsl(185, 42%, 37%)",
@@ -16,4 +21,5 @@ export default {
     // Text
     veryDarkGrayishYellow: "hsl(60, 10%, 19%)",
     white: "#ffffff",
+    dark:"#000",
 }

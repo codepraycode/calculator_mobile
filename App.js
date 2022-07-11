@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import { useFonts } from 'expo-font';
 
 // Components
@@ -15,20 +15,25 @@ export default function App() {
 
   const [loaded] = useFonts({
     Spartan:require('./assets/fonts/LeagueSpartan-VariableFont_wght.ttf'),
-  })
+  });
+
+  const colorScheme = useColorScheme();
 
   if (!loaded){
     return null;
   }
 
+
+  const themeStyle = colorScheme === 'light' ? screen_styles.lightMode : screen_styles.darkMode
+
   return (
-    <View style={screen_styles.container}>
+    <View style={[screen_styles.container, themeStyle]}>
       
-      <Header/>
+      <Header theme={colorScheme}/>
 
-      <Display/>
+      <Display theme={colorScheme} />
 
-      <Controls/>
+      <Controls theme={colorScheme} />
 
       <StatusBar style="auto"/>
     </View>
@@ -38,10 +43,17 @@ export default function App() {
 const screen_styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: styles.lightGray,
     alignItems: 'center',
     // justifyContent: 'center',
     paddingTop:80
 
   },
+
+  lightMode: {
+    backgroundColor: styles.lightGray,
+  },
+
+  darkMode:{
+    backgroundColor: styles.darkBlue1,
+  }
 });
