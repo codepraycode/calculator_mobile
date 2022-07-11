@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import styles from './assets/styles';
 
+// Components
+import Header from './components/Header';
+import Display from './components/Display';
 
 const Button = ({text, btnStyle})=>{
   return (
@@ -14,17 +17,12 @@ const Button = ({text, btnStyle})=>{
 export default function App() {
   return (
     <View style={screen_styles.container}>
-      <View style={screen_styles.header}>
-        <View>
-          <Text style={{fontSize:30}}>CALC</Text>
-        </View>
+      
+      <Header/>
 
-        <View style={screen_styles.toogle}/>
+      <Display/>
 
-      </View>
-
-
-      <View style={screen_styles.screen}/>
+      
 
       <View style={screen_styles.controls}>
         <View style={screen_styles.buttons}>
@@ -136,28 +134,13 @@ const screen_styles = StyleSheet.create({
     flex: 1,
     backgroundColor: styles.lightGray,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    paddingTop:80
+
   },
 
-  header:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    width:'90%',
-    marginBottom:20
-  },
-  toogle:{
-    width:30,
-    height:30,
-    backgroundColor:styles.grayishRed,
-  },
-  screen:{
-    width:'90%',
-    height:100,
-    backgroundColor:styles.veryLightGrey,
-    marginBottom:20,
-    borderRadius:10
-  },
+
+  
   controls:{
     backgroundColor:styles.grayishRed,
     width:'90%',
