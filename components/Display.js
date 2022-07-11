@@ -6,12 +6,6 @@ import colors from '../assets/styles';
 
 const Display = ({theme}) => {
     
-    
-    const themeStyle = theme === 'light' ? 
-        styles.lightMode 
-        : 
-        styles.darkMode
-    
     return (
         <View style={styles.wrapper}>
             

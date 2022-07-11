@@ -4,12 +4,36 @@ import React from 'react';
 // Styles
 import colors from '../assets/styles';
 
-const Button = ({ text, special, style }) => {
+const Button = ({ text, special, style, theme }) => {
+    const specialStyle = theme === 'light' ? styles.specialLight : styles.specialDark;
+
+    // const specialTextStyle = theme === 'light' ? styles.textLight : styles.textDark;
+
+    const themeStyle = theme === 'light' ? styles.buttonLight : styles.buttonDark
+
+
+    let textColor = theme === 'light' ? colors.dark : colors.veryDarkGrayishBlue
+    
+    if(special){
+        textColor = colors.white
+    }
+    // special ? colors.white
+    
     return (
-        <View style={[styles.button, special ? styles.special: null, style||null]}>
+        <View 
+            style={
+                [
+                    styles.button, 
+                    themeStyle,
+                    special ? specialStyle : null,
+                    style||null,
+                    
+                ]
+            }
+        >
             <Text 
                 style={{
-                    color:special ? colors.white:null,
+                    color: textColor,
                     fontSize:20,
                     fontWeight:'bold',
                     fontFamily: 'Spartan',
@@ -23,15 +47,16 @@ const Button = ({ text, special, style }) => {
 }
 
 
-const Controls = () => {
+const Controls = ({theme}) => {
     return (
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, theme === 'light' ? styles.wrapperLight : styles.wrapperDark]}>
             
-            <View style={styles.buttons}>
+            <View style={[styles.buttons, ]}>
                 {[7, 8, 9, 'DEL'].map((each, i) => {
 
                     return <Button
                         text={each}
+                        theme={theme}
                         key={i}
                         special={i == 3}
                         />
@@ -43,6 +68,7 @@ const Controls = () => {
 
                     return <Button
                         text={each}
+                        theme={theme}
                         key={i}
                         />
                 })}
@@ -53,6 +79,7 @@ const Controls = () => {
 
                     return <Button
                         text={each}
+                        theme={theme}
                         key={i}
                         // special={i==3}
                          />
@@ -65,6 +92,7 @@ const Controls = () => {
 
                     return <Button
                         text={each}
+                        theme={theme}
                         key={i}
                         // special={i == 3} 
                         />
@@ -72,10 +100,11 @@ const Controls = () => {
             </View>
 
 
-            <View style={[styles.buttons,]}>
+            <View style={styles.buttons}>
 
                 <Button
                     text={"RESET"}
+                    theme={theme}
 
                     special={true}
                 />
@@ -83,11 +112,19 @@ const Controls = () => {
 
                 <Button
                     text={"="}
+                    theme={theme}
                     special={true}
                     style={
-                        {
-                            backgroundColor:colors.orange,
-                        }
+                        
+
+                        theme === 'light' ? 
+                            {
+                                backgroundColor: colors.orange,
+                            }
+                            : 
+                            {
+                                backgroundColor: colors.btnRed,
+                            }
                     }
                 />
 
@@ -105,7 +142,6 @@ const styles = StyleSheet.create({
     wrapper: {
         width: '100%',
         flex: 2,
-        backgroundColor: colors.grayishRed,
         borderRadius: 10,
         paddingHorizontal:10,
     },
@@ -118,7 +154,7 @@ const styles = StyleSheet.create({
     },
     button: {
         height:50,
-        backgroundColor:colors.grayishYellow,
+        
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
@@ -127,7 +163,31 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation:3,
     },
-    special:{
-        backgroundColor:colors.darkCyan,
-    }
+    // special:{
+    //     backgroundColor:colors.darkCyan,
+    // },
+
+
+    // Themes
+
+    wrapperLight:{
+        backgroundColor: colors.grayishRed,
+    },
+    wrapperDark: {
+        backgroundColor: colors.darkBlue2,
+    },
+
+    buttonLight: {
+        backgroundColor: colors.grayishYellow,
+    },
+    buttonDark: {
+        backgroundColor: colors.white,
+    },
+
+    specialLight: {
+        backgroundColor: colors.darkCyan,
+    },
+    specialDark: {
+        backgroundColor: colors.darkBlue1,
+    },
 })
