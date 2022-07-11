@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "ushering",
-    "slug": "ushering",
+    "name": "cpc calculator",
+    "slug": "cpc_calculator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/app_splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,9 +22,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/app_icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.codepraycode.cpc_calculator"
     },
     "web": {
       "favicon": "./assets/favicon.png"
